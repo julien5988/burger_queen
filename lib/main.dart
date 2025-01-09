@@ -119,8 +119,8 @@ class MyHomePage extends StatelessWidget {
                                 children: [
                                   Image.asset(
                                     "assets/images/layer-burger.jpg",
-                                    width: MediaQuery.of(context).size.width *
-                                        0.7,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.7,
                                     fit: BoxFit.cover,
                                   ),
                                   const Positioned(
@@ -212,10 +212,43 @@ class MyHomePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  rowDrinks(image: "assets/images/classic-cola.jpg", title: "Le classique"),
-                  rowDrinks(image: "assets/images/sparkling.jpg", title: "Eau gazeuse"),
-                  rowDrinks(image: "assets/images/orange-soda.jpg", title: "A l'orange"),
+                  rowDrinks(
+                      image: "assets/images/classic-cola.jpg",
+                      title: "Le classique"),
+                  rowDrinks(
+                      image: "assets/images/sparkling.jpg",
+                      title: "Eau gazeuse"),
+                  rowDrinks(
+                      image: "assets/images/orange-soda.jpg",
+                      title: "A l'orange"),
                   rowDrinks(image: "assets/images/tk2.jpg", title: "Karmeliet")
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Text(
+              "La touche sucrée pour finir en beauté",
+              style: TextStyle(
+                  color: Colors.brown,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Wrap(
+                alignment:
+                    WrapAlignment.center, // Centre les éléments horizontalement
+                spacing: 16, // Espacement horizontal entre les widgets
+                runSpacing: 16, // Espacement vertical entre les lignes
+                children: [
+                  cardDessert(image: "assets/images/oreo-ice.jpg", title: "Oreo"),
+                  cardDessert(image: "assets/images/donut.jpg", title: "Donut"),
+                  cardDessert(image: "assets/images/cupcake.jpg", title: "CupCake"),
+                  cardDessert(image: "assets/images/strawberry-waffle.jpg", title: "Crêpe fraise"),
                 ],
               ),
             )
@@ -341,38 +374,83 @@ class MyHomePage extends StatelessWidget {
   }) {
     return Padding(
       padding: const EdgeInsets.all(10),
-        child: Card(
-          elevation: 6,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Stack(
-              children: [
-                // Background Image
-                Image.asset(
-                  image,
-                  height: 250,
-                  width: 150,
-                  fit: BoxFit.cover,
+      child: Card(
+        elevation: 6,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Stack(
+            children: [
+              // Background Image
+              Image.asset(
+                image,
+                height: 250,
+                width: 150,
+                fit: BoxFit.cover,
+              ),
+              // Title
+              Positioned(
+                top: 25,
+                left: 0,
+                right: 0,
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.brown,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                // Title
-                Positioned(
-                  top: 25,
-                  left: 0,
-                  right: 0,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget cardDessert({
+    required String image,
+    required String title,
+  }) {
+    return Card(
+      elevation: 8,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Stack(
+          children: [
+            // Image de fond
+            Image.asset(
+              image,
+              height: 150,
+              width: 150,
+              fit: BoxFit.cover,
+            ),
+            // Conteneur centré
+            Positioned.fill(
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8), // Ajuste l'épaisseur du conteneur
+                  decoration: BoxDecoration(
+                    color: Colors.white, // Couleur avec opacité
+                    borderRadius: BorderRadius.circular(12), // Bords arrondis
+                  ),
                   child: Text(
                     title,
                     style: const TextStyle(
-                      color: Colors.brown,
+                      color: Colors.pink,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
+      ),
     );
   }
 }
