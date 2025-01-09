@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   final String title;
   const MyHomePage({super.key, required this.title});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,46 +103,44 @@ class MyHomePage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 16),
             ),
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Card(
-                        elevation: 6,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.7,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/layer-burger.jpg",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.7,
-                                      fit: BoxFit.cover,
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Card(
+                      elevation: 6,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.7,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Image.asset(
+                                    "assets/images/layer-burger.jpg",
+                                    width: MediaQuery.of(context).size.width *
+                                        0.7,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const Positioned(
+                                    top: 16,
+                                    child: Text(
+                                      "Une petite faim ?",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    const Positioned(
-                                      top: 16,
-                                      child: Text(
-                                        "Une petite faim ?",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    )
-                                  ],
-                                ))),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                                  )
+                                ],
+                              ))),
+                    )
+                  ],
+                ),
+              ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             const Text(
               "Chaud devant",
               style: TextStyle(
@@ -150,7 +148,7 @@ class MyHomePage extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.bold),
             ),
-            Text("Le meilleur de nos burgers à portée de clic"),
+            const Text("Le meilleur de nos burgers à portée de clic"),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -184,7 +182,7 @@ class MyHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             const Text(
               "Les accompagnements",
               style: TextStyle(
@@ -192,10 +190,35 @@ class MyHomePage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 16),
             ),
-            rowAccompagnement(image: "assets/images/fries.jpg", title: "Frites"),
-            rowAccompagnement(image: "assets/images/patate-douce.jpg", title: "Frite de patate douce"),
-            rowAccompagnement(image: "assets/images/potatoes.jpg", title: "Potatoes"),
-            rowAccompagnement(image: "assets/images/poutine.jpg", title: "Poutines")
+            rowAccompagnement(
+                image: "assets/images/fries.jpg", title: "Frites"),
+            rowAccompagnement(
+                image: "assets/images/patate-douce.jpg",
+                title: "Frite de patate douce"),
+            rowAccompagnement(
+                image: "assets/images/potatoes.jpg", title: "Potatoes"),
+            rowAccompagnement(
+                image: "assets/images/poutine.jpg", title: "Poutines"),
+            const SizedBox(height: 8),
+            const Text(
+              "Une petite soif ?",
+              style: TextStyle(
+                color: Colors.brown,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  rowDrinks(image: "assets/images/classic-cola.jpg", title: "Le classique"),
+                  rowDrinks(image: "assets/images/sparkling.jpg", title: "Eau gazeuse"),
+                  rowDrinks(image: "assets/images/orange-soda.jpg", title: "A l'orange"),
+                  rowDrinks(image: "assets/images/tk2.jpg", title: "Karmeliet")
+                ],
+              ),
+            )
           ],
         ),
       ),
@@ -230,7 +253,7 @@ class MyHomePage extends StatelessWidget {
                 right: 0,
                 child: Container(
                   height: 50,
-                  color: Color(0xFFFFC0D3),
+                  color: const Color(0xFFFFC0D3),
                 ),
               ),
               // Title
@@ -273,10 +296,11 @@ class MyHomePage extends StatelessWidget {
     required String image,
     required String title,
     double avatarRadius = 34, // Rayon de l'avatar (valeur par défaut)
-    EdgeInsetsGeometry padding = const EdgeInsets.all(8), // Padding autour de l'élément
+    EdgeInsetsGeometry padding =
+        const EdgeInsets.all(8), // Padding autour de l'élément
   }) {
     return Container(
-      color: Color(0xFFFFC0D3), // Couleur de fond
+      color: const Color(0xFFFFC0D3), // Couleur de fond
       child: Padding(
         padding: padding,
         child: Column(
@@ -308,6 +332,47 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget rowDrinks({
+    required String image,
+    required String title,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+        child: Card(
+          elevation: 6,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Stack(
+              children: [
+                // Background Image
+                Image.asset(
+                  image,
+                  height: 250,
+                  width: 150,
+                  fit: BoxFit.cover,
+                ),
+                // Title
+                Positioned(
+                  top: 25,
+                  left: 0,
+                  right: 0,
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
     );
   }
 }
